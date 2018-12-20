@@ -38,7 +38,7 @@
 			$('#change').load('input_form.php', function() {
 				$("#user").val(usr);
 				$("#flag").val("deb");
-				radiorequired(3,'P');
+				$("#divselect").css("display", "none");
 				$("#start").submit(function(e){
 					e.preventDefault();
 					console.log($("#start").serialize());
