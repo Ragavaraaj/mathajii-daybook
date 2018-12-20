@@ -28,7 +28,7 @@ try
 		$con = $database->openConnection();
 		$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 		$preRes = $prestmt->fetch();
-		$querry = "insert into " . $inUser . "(date,info,debit,credit,balance,salbalance,view) values(CURRENT_DATE,?,?,?,?,?,?)";
+		$querry = "insert into " . $inUser . "(date,info,project,debit,credit,balance,salbalance,view) values(CURRENT_DATE,?,?,?,?,?,?,?)";
 		$querry_p = "update project set ? = ?";
 		if($preRes == null )
 		{	
