@@ -38,9 +38,7 @@
 			$('#change').load('input_form.php', function() {
 				$("#user").val(usr);
 				$("#flag").val("deb");
-				$("#divselect").css("display", "none");
-				$("#divadj").css("display", "none");
-//				radiorequired(2,'A');
+				radiorequired(3,'P');
 				$("#start").submit(function(e){
 					e.preventDefault();
 					console.log($("#start").serialize());
@@ -71,9 +69,7 @@
 			$('#change').load('input_form.php', function() {
 				$("#user").val(usr);
 				$("#flag").val("cre");
-				$("#divadj").css("display", "none");
-				$("#divselect").css("display", "none");
-//				radiorequired(3,'P');
+				radiorequired(3,'P');
 				$("#start").submit(function(e){
 					e.preventDefault();
 					console.log($("#start").serialize());
@@ -106,7 +102,6 @@
 				$("#flag").val("salb");
 				$("#divadj").css("display", "none");
 				$("#divselect").css("display", "none");
-//				radiorequired(3,'P');
 				$("#start").submit(function(e){
 					e.preventDefault();
 					console.log($("#start").serialize());

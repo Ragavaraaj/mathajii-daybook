@@ -3,7 +3,7 @@
 	<div class="form-group" id="divadj">
 		<label class="lead" for="adjustment">Adjustment</label>
 		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="A1" name="adjustment" class="custom-control-input" value="nadj">
+		  <input type="radio" id="A1" name="adjustment" class="custom-control-input" value="nadj" checked>
 		  <label class="custom-control-label" for="A1">Not a Adjustment</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
