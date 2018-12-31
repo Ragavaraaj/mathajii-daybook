@@ -8,7 +8,7 @@ function change($con,$stmt_p,$inProject,$noAdj)
 	$preRes_p = $prestmt_p->fetch();
 	$inP = $preRes_p[$inProject];
 	if($noAdj)
-		$stmt_p->execute(array($inProject,($inP+$inAmt)));
+		$stmt_p->execute(array("project1",10));
 	else
 		$stmt_p->execute(array($inProject,($inP-$inAmt)));
 	echo "success";
@@ -29,7 +29,7 @@ try
 		$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 		$preRes = $prestmt->fetch();
 		$querry = "insert into " . $inUser . "(date,info,project,debit,credit,balance,salbalance,view) values(CURRENT_DATE,?,?,?,?,?,?,?)";
-		$querry_p = "update project set ? = ?";
+		$querry_p = "update project set ? = ? where id = 1";
 		if($preRes == null )
 		{	
 			$start = $con->prepare($querry);
