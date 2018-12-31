@@ -67,17 +67,17 @@ try
 		}
 		else if($inFlag == "info") 
 		{
-			$stmt->execute(array($inPar,0,0,$preRes['balance'],$preRes['salbalance'],0));
+			$stmt->execute(array($inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],0));
 			echo "success";
 		}
 		else if($inFlag == "salb") 
 		{
-			$stmt->execute(array($inPar,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),2));
+			$stmt->execute(array($inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),2));
 			echo "success";
 		}
 		else if($inFlag == "salw") 
 		{
-			$stmt->execute(array($inPar,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),1));
+			$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),1));
 			echo "success";
 		}
 		else
