@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		var url =  window.location.href;
-		var usr = url.substring(url.indexOf(".php")-5,url.indexOf(".php"));
+		var usr = url.substring(url.indexOf(".php")-4,url.indexOf(".php"));
 		console.log("user.php = " + usr);
 		//Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
 		if (navigator.serviceWorker.controller) {
@@ -24,7 +24,7 @@
 	<script src="/mathajidaybook/user/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/mathajidaybook/user/js/bootstrap.min.js"></script>
 	<script src="/mathajidaybook/user/js/jquery.min.js"></script>
-	<script src="/mathajidaybook/user/js/main.js"></script>
+	<script src="/mathajidaybook/test/user/js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/fh-3.1.4/datatables.min.css"/>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/fh-3.1.4/datatables.min.js"></script>
 

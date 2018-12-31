@@ -117,6 +117,26 @@
 	
 	function loadpage()
 	{
+		$("#project").click(function () { 
+			console.log("click expenses");
+			$.ajax({
+				type: "POST",
+				url: "fetch.php",
+				data: {
+					project : "true"
+				},
+				dataType: "json",
+				success: function (response) {
+					$("#change").load("projectview.php", function () {
+						$("#p1").val(response[0]["p1"]);
+						$("#p2").val(response[0]["p2"]);
+						$("#p3").val(response[0]["p3"]);
+						back();
+					});
+				}
+			});	
+		});
+
 		$("#user1").click(function(){
 			var daybook = null;
 			var salbook = null;
