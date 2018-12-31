@@ -11,7 +11,8 @@
 		  <label class="custom-control-label" for="A2">Adjustment</label>
 		</div>
 	</div>
-	<label class="lead" for="Par">Particulars</label>
+	<div class="form-group" id="divpar">
+		<label class="lead" for="Par">Particulars</label>
 		<input type="text" class="form-control" id="Par" name = "Par" maxlength="25" required="required">
 	</div>
 	<div class="form-group" id="divamt">
@@ -22,15 +23,15 @@
 		<label class="lead" for="project">Project</label>
 		<div class="custom-control custom-radio custom-control-inline">
 		  <input type="radio" id="P1" name="project" class="custom-control-input" value="1" >
-		  <label class="custom-control-label" for="P1">1</label>
+		  <label class="custom-control-label" for="P1">0</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
 		  <input type="radio" id="P2" name="project" class="custom-control-input" value="2" >
-		  <label class="custom-control-label" for="P2">2</label>
+		  <label class="custom-control-label" for="P2">1</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
 		  <input type="radio" id="P3" name="project" class="custom-control-input" value="3" >
-		  <label class="custom-control-label" for="P3">3</label>
+		  <label class="custom-control-label" for="P3">2</label>
 		</div>
 	</div>
 	<input type="hidden" id="user" name="user"/>

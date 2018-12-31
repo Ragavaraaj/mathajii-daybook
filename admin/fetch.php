@@ -8,6 +8,7 @@ try
 	{ 
 		$inUser = $_POST["user"];
 		$inType = $_POST["type"];
+		$inReqProject = $_POST["project"];
 		$database = new Connection();
 		$con = $database->openConnection();
 		if($inType == "daybook")
@@ -33,6 +34,12 @@ try
 					$row["credit"] = number_format(0,2);
 				$data[] = $row;
 			}
+		}
+		else if ($inReqProject == "true")
+		{
+			$stmt = $con->query("select * from project");
+			while($row = $stmt->fetch())
+				$data[] = $row;
 		}
 		else
 		{			

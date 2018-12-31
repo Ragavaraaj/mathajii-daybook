@@ -2,15 +2,17 @@
  
 include_once ('connection.php');
 
-function change($con,$stmt_p,$inProject,$noAdj)
+function change($con,$inProject,$inAmt,$noAdj)
 {
+	$querry_p = "update project set " . $inProject . " = ? where id = 1";
+	$stmt_p = $con->prepare($querry_p);
 	$prestmt_p = $con->query("select * from project");
 	$preRes_p = $prestmt_p->fetch();
 	$inP = $preRes_p[$inProject];
 	if($noAdj)
-		$stmt_p->execute(array("project1",10));
+		$stmt_p->execute(array($inP+$inAmt));
 	else
-		$stmt_p->execute(array($inProject,($inP-$inAmt)));
+		$stmt_p->execute(array($inP-$inAmt));
 	echo "success";
 }
  
@@ -29,7 +31,6 @@ try
 		$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 		$preRes = $prestmt->fetch();
 		$querry = "insert into " . $inUser . "(date,info,project,debit,credit,balance,salbalance,view) values(CURRENT_DATE,?,?,?,?,?,?,?)";
-		$querry_p = "update project set ? = ? where id = 1";
 		if($preRes == null )
 		{	
 			$start = $con->prepare($querry);
@@ -38,7 +39,6 @@ try
 			$preRes = $prestmt->fetch();
 		}
 		$stmt= $con->prepare($querry);
-		$stmt_p = $con->prepare($querry_p);
 		if($inFlag == "deb")
 		{
 			if($inAdj == "no")
@@ -57,19 +57,14 @@ try
 			if($inAdj == "no")
 			{
 				$stmt->execute(array($inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],0));
-				change($con,$stmt_p,$inProject,1);
+				change($con,$inProject,$inAmt,1);
 			}
 			else
 			{
 				$stmt->execute(array($inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],0));
-				change($con,$stmt_p,$inProject,1);
+				change($con,$inProject,$inAmt,0);
 			}
 		}
-		// else if($inFlag == "cre")
-		// {
-		// 	$stmt->execute(array($inPar,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],0));
-		// 	echo "success";
-		// }
 		else if($inFlag == "info") 
 		{
 			$stmt->execute(array($inPar,0,0,$preRes['balance'],$preRes['salbalance'],0));

@@ -1,3 +1,58 @@
+	function ajaxcall()
+	{
+		return $.ajax({
+			type : "post",
+			url : "update.php",
+			data : $("#start").serialize(),
+			datatype : "html",
+			success : function(data){
+				if(data == "success")
+					back();
+			},
+			error : function(data){
+				console.log("exception !!");
+			}
+		});
+	}
+
+	function start(check)
+	{
+		return 	$("#start").submit(function(e){
+			e.preventDefault();
+			console.log($("#start").serialize());
+			if(check){
+				if($("#amount").val() != "" ||  $("#Par").val() != "")
+					ajaxcall();
+			}
+			else
+				if($("#amount").val() != "" &&  $("#Par").val() != "" && $('input[name=project]:checked').val() != "undefined")
+					ajaxcall();
+		});
+	}
+
+	function back(){
+		return $.ajax({
+				type:"POST",
+				url : "shutdown.php",
+				datatype : "html",
+				success : function(result){
+					if(result == "no")
+						$('#change').load('button.php', function() {
+							loadpage();
+						});
+					else
+						$('#change').load('down.php');
+				}
+			});
+	}
+	
+	function radiorequired(num,aorp)
+	{
+		for (i =0 ; i< num ; i++){
+			$("#" + aorp + num).prop('required',true);
+		}
+	}
+	
 	function loadpage()
 	{
 		$("#info").click(function(){
@@ -8,26 +63,7 @@
 				$("#amount").removeAttr("required");
 				$("#user").val(usr);
 				$("#flag").val("info");
-				$("#start").submit(function(e){
-					e.preventDefault();
-					console.log($("#start").serialize());
-					if($("#amount").val() != "" ||  $("#Par").val() != "")
-					{
-						$.ajax({
-							type : "post",
-							url : "update.php",
-							data : $("#start").serialize(),
-							datatype : "html",
-							success : function(data){
-								if(data == "success")
-									back();
-							},
-							error : function(data){
-								console.log("exception !!");
-							}
-						});
-					}
-				});
+				start(1);
 				$("#backtomain").click(function(){
 					back();
 				});
@@ -39,26 +75,7 @@
 				$("#user").val(usr);
 				$("#flag").val("deb");
 				$("#divselect").css("display", "none");
-				$("#start").submit(function(e){
-					e.preventDefault();
-					console.log($("#start").serialize());
-					if($("#amount").val() != "" &&  $("#Par").val() != "" && $('input[name=adjustment]:checked').val() != "undefined")
-					{
-						$.ajax({
-							type : "post",
-							url : "update.php",
-							data : $("#start").serialize(),
-							datatype : "html",
-							success : function(data){
-								if(data == "success")
-									back();
-							},
-							error : function(data){
-								console.log("exception !!");
-							}
-						});
-					}
-				});
+				start(1);
 				$("#backtomain").click(function(){
 					back();
 				});
@@ -70,26 +87,7 @@
 				$("#user").val(usr);
 				$("#flag").val("cre");
 				radiorequired(3,'P');
-				$("#start").submit(function(e){
-					e.preventDefault();
-					console.log($("#start").serialize());
-					if($("#amount").val() != "" &&  $("#Par").val() != "" && $('input[name=project]:checked').val() != "undefined")
-					{
-						$.ajax({
-							type : "post",
-							url : "update.php",
-							data : $("#start").serialize(),
-							datatype : "html",
-							success : function(data){
-								if(data == "success")
-									back();
-							},
-							error : function(data){
-								console.log("exception !!");
-							}
-						});
-					}
-				});
+				start(0);
 				$("#backtomain").click(function(){
 					back();
 				});
@@ -102,26 +100,7 @@
 				$("#flag").val("salb");
 				$("#divadj").css("display", "none");
 				$("#divselect").css("display", "none");
-				$("#start").submit(function(e){
-					e.preventDefault();
-					console.log($("#start").serialize());
-					if($("#amount").val() != "" &&  $("#Par").val() != "")
-					{
-						$.ajax({
-							type : "post",
-							url : "update.php",
-							data : $("#start").serialize(),
-							datatype : "html",
-							success : function(data){
-								if(data == "success")
-									back();
-							},
-							error : function(data){
-								console.log("exception !!");
-							}
-						});
-					}
-				});
+				start(1);
 				$("#backtomain").click(function(){
 					back();
 				});
@@ -134,26 +113,7 @@
 				$("#flag").val("salw");
 				$("#divselect").css("display", "none");
 				$("#divadj").css("display", "none");
-				$("#start").submit(function(e){
-					e.preventDefault();
-					console.log($("#start").serialize());
-					if($("#amount").val() != "" &&  $("#Par").val() != "")
-					{
-						$.ajax({
-							type : "post",
-							url : "update.php",
-							data : $("#start").serialize(),
-							datatype : "html",
-							success : function(data){
-								if(data == "success")
-									back();
-							},
-							error : function(data){
-								console.log("exception !!");
-							}
-						});
-					}
-				});
+				start(0);
 				$("#backtomain").click(function(){
 					back();
 				});
@@ -259,29 +219,6 @@
 				});
 			});
 		});
-	}
-	
-	function back(){
-		return $.ajax({
-				type:"POST",
-				url : "shutdown.php",
-				datatype : "html",
-				success : function(result){
-					if(result == "no")
-						$('#change').load('button.php', function() {
-							loadpage();
-						});
-					else
-						$('#change').load('down.php');
-				}
-			});
-	}
-	
-	function radiorequired(num,aorp)
-	{
-		for (i =0 ; i< num ; i++){
-			$("#" + aorp + num).prop('required',true);
-		}
 	}
 	
 	$(document).ready(function(){
