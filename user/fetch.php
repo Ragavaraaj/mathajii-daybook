@@ -9,7 +9,6 @@ try
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 	{ 
 		$inUser = $_POST["user"];
-		$inType = $_POST["type"];
 		$database = new Connection();
 		$con = $database->openConnection();
 	

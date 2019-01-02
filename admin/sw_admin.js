@@ -12,13 +12,14 @@ var precacheFiles = [
 		"./js/jquery-3.3.1.slim.min.js",
 		"./js/bootstrap.min.js",
 		"./js/jquery.min.js",
-		"https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.css",
-		"https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.js",
-		"./js/admin.js",
+		"https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.css",
+		"https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.js",
+    "./js/admin.js",
 		"./table.php",
 		"./admin.php",
 		"./button.php",
-		"./down.php"
+    "./down.php",
+    "./projectview.php"
     ];
 
 //Install stage sets up the cache-array to configure pre-cache content

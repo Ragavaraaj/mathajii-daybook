@@ -20,13 +20,15 @@
 	</div>
 </div>
 <div class="row justify-content-md-center">
+	<div class="col-4" id="exportexcel" style="padding-right: 0;">
+	</div>
 	<div class="col-4" style="padding-right: 0;">
 		<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="DayBook" id="daybook" style="padding-left: 5px; padding-right: 5px;">
 	</div>
 	<div class="col-4">
 		<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="Spb Salary" id="spbsalary">
 	</div>
-	<div class="col-4" style="padding-left: 0; padding-right: 0;">
+	<div class="col-4" style="padding-right: 0;">
 		<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="Adv Salary" id="advsalary">
 	</div>
 	<div class="col-4">

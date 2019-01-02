@@ -95,7 +95,7 @@
 			console.log("click expenses");
 			$.ajax({
 				type: "POST",
-				url: "fetch.php",
+				url: "projectfetch.php",
 				data: {
 					project: "true"
 				},
