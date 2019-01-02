@@ -25,8 +25,10 @@
 	<script src="/mathajidaybook/user/js/bootstrap.min.js"></script>
 	<script src="/mathajidaybook/user/js/jquery.min.js"></script>
 	<script src="/mathajidaybook/test/user/js/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/fh-3.1.4/datatables.min.css"/>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/fh-3.1.4/datatables.min.js"></script>
+	<script src="/mathajidaybook/test/user/css/main.css"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/fc-3.2.5/fh-3.1.4/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/fc-3.2.5/fh-3.1.4/datatables.min.js"></script>
+
 
 </head>
 <body class="container">

@@ -30,59 +30,96 @@ try
 		$con = $database->openConnection();
 		$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 		$preRes = $prestmt->fetch();
-		$querry = "insert into " . $inUser . "(date,info,project,debit,credit,balance,salbalance,view) values(CURRENT_DATE,?,?,?,?,?,?,?)";
+		$querry = "insert into " . $inUser . "(date,info,project,debit,credit,balance,salbalance,specialbonus,saladvanace,view) values(CURRENT_DATE,?,?,?,?,?,?,?,?,?)";
 		if($preRes == null )
 		{	
 			$start = $con->prepare($querry);
-			$start->execute(array("start",0,0,0,0,5));
+			$start->execute(array("start",0,0,0,0,0,0,0,-1));
 			$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 			$preRes = $prestmt->fetch();
 		}
 		$stmt= $con->prepare($querry);
-		if($inFlag == "deb")
+
+		switch ($inFlag)
 		{
-			if($inAdj == "no")
-			{
-				$stmt->execute(array($inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],0));
+			case "deb":
+				if($inAdj == "no")
+				{
+					$stmt->execute(array($inPar,null,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$database->closeConnection();
+					echo "success";
+				}
+				else
+				{
+					$stmt->execute(array($inPar,null,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$database->closeConnection();
+					echo "success";
+				}
+			break;
+
+			case "cre":
+				if($inAdj == "no")
+				{
+					$stmt->execute(array($inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					change($con,$inProject,$inAmt,1);
+					$database->closeConnection();
+				}
+				else
+				{
+					$stmt->execute(array($inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					change($con,$inProject,$inAmt,0);
+					$database->closeConnection();
+				}
+			break;
+
+			case "info":
+				$stmt->execute(array($inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+				$database->closeConnection();
 				echo "success";
-			}
-			else
-			{
-				$stmt->execute(array($inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],0));
+			break;
+
+			case "salb":
+				$stmt->execute(array($inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],1));
+				$database->closeConnection();
 				echo "success";
-			}
-		}
-		else if($inFlag == "cre")
-		{
-			if($inAdj == "no")
-			{
-				$stmt->execute(array($inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],0));
-				change($con,$inProject,$inAmt,1);
-			}
-			else
-			{
-				$stmt->execute(array($inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],0));
-				change($con,$inProject,$inAmt,0);
-			}
-		}
-		else if($inFlag == "info") 
-		{
-			$stmt->execute(array($inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],0));
-			echo "success";
-		}
-		else if($inFlag == "salb") 
-		{
-			$stmt->execute(array($inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),2));
-			echo "success";
-		}
-		else if($inFlag == "salw") 
-		{
-			$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),1));
-			echo "success";
-		}
-		else
-			echo "fail";
-		$database->closeConnection();
+			break;
+
+			case "salw":
+				$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],2));
+				$database->closeConnection();
+				echo "success";
+			break;
+
+			case "ssalb":
+				$stmt->execute(array($inPar,null,0,$inAmt,$preRes['balance'],$preRes['salbalance'],($preRes['specialbonus']-$inAmt),$preRes['saladvanace'],3));
+				$database->closeConnection();
+				echo "success";
+			break;
+
+			case "ssalw":
+				$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],($preRes['specialbonus']+$inAmt),$preRes['saladvanace'],4));
+				$database->closeConnection();
+				echo "success";
+			break;
+
+			case "asalb":
+				$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']+$inAmt),6));
+				$database->closeConnection();
+				echo "success";
+			break;
+
+			case "asalw":
+				$stmt->execute(array($inPar,null,$inAmt,$inAmt,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']-$inAmt),8));
+					$database->closeConnection();
+					echo "success";
+			break;
+
+			default:
+				$database->closeConnection();
+				echo "fail";
+			break;
+
+		}	
 	}
 }
  
