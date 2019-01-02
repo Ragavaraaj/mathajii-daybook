@@ -26,7 +26,7 @@
 	<div class="col-4">
 		<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="Spb Salary" id="spbsalary">
 	</div>
-	<div class="col-4" style="padding-left: 0; padding-right: 0;">
+	<div class="col-4" style="padding-left: 0;">
 		<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="Adv Salary" id="advsalary">
 	</div>
 	<div class="col-4">
