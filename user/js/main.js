@@ -173,7 +173,6 @@ function loadpage()
 			url : "fetch.php",
 			data:{
 				user : usr,
-				type : "daybook"
 			},
 			datatype : "json",
 		});

@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		var url =  window.location.href;
-		var usr = url.substring(url.indexOf(".php")-4,url.indexOf(".php"));
+		var usr = url.substring(url.indexOf(".php")-5,url.indexOf(".php"));
 		console.log("user.php = " + usr);
 		//Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
 		if (navigator.serviceWorker.controller) {

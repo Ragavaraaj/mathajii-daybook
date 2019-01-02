@@ -3,7 +3,7 @@
 		<tr>
 			<th class="text-left">Date</th>
 			<th class="text-left">Particular</th>
-			<th class="text-left" id="hideProject">Project</th>
+			<th class="text-left">Project</th>
 			<th class="text-right">Debit</th>
 			<th class="text-right">credit</th>
 			<th class="text-right">balance</th>
