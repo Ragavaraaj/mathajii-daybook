@@ -47,13 +47,13 @@ try
 
 		$resultData["salbook"] = $data2;
 
-		$stmt = $con->query("select date, info, project, debit, credit, salbalance, view from " . $inUser .  " where view between 3 and 4 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, specialbonus, view from " . $inUser .  " where view between 3 and 4 order by id");
 		while($row = $stmt->fetch())
 		{
 			$date = date_create($row["date"]);
 			$row["date"] = date_format($date,"d-M-y");
-			$row["balance"] = $row["salbalance"];
-			unset($row["salbalance"]);
+			$row["balance"] = $row["specialbonus"];
+			unset($row["specialbonus"]);
 			if($row["view"] == 4)
 				$row["credit"] = number_format(0,2);
 			$data3[] = $row;
@@ -61,13 +61,13 @@ try
 
 		$resultData["spbbook"] = $data3;
 
-		$stmt = $con->query("select date, info, project, debit, credit, salbalance, view from " . $inUser .  " where view between 6 and 8 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, saladvanace, view from " . $inUser .  " where view between 6 and 8 order by id");
 		while($row = $stmt->fetch())
 		{
 			$date = date_create($row["date"]);
 			$row["date"] = date_format($date,"d-M-y");
-			$row["balance"] = $row["salbalance"];
-			unset($row["salbalance"]);
+			$row["balance"] = $row["saladvanace"];
+			unset($row["saladvanace"]);
 			if($row["view"] == 6)
 				$row["credit"] = number_format(0,2);
 			else
@@ -77,8 +77,8 @@ try
 
 		$resultData["advbook"] = $data4;
 
-		$database->closeConnection();
 		echo json_encode($resultData);
+		$database->closeConnection();
 	}
 }
  

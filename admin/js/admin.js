@@ -390,6 +390,63 @@
 				back();
 			});
 		});
+
+		$("#user6").click(function () {
+			var usr = "user6";
+			var reqData = $.ajax({
+				type: "POST",
+				url: "fetch.php",
+				data: {
+					user: usr,
+				},
+				datatype: "json",
+			});
+			$('#change').load('table.php', function () {
+				reqData.done(function (result) {
+					data = jQuery.parseJSON(result);
+					daybook = data.daybook;
+					salbook = data.salbook;
+					spbbook = data.spbbook;
+					advbook = data.advbook;
+					var table = datatablecall(daybook);
+					exportbtn(table);
+					$("#daybook").click(function () {
+						if (daybook != null) {
+							table.clear().draw();
+							table.rows.add(daybook).draw();
+						}
+					});
+
+					$("#basicsalary").click(function () {
+						if (salbook != null) {
+							table.clear().draw();
+							table.column(2).visible(false);
+							table.rows.add(salbook).draw();
+						}
+					});
+
+					$("#spbsalary").click(function () {
+						if (spbbook != null) {
+							table.clear().draw();
+							table.column(2).visible(false);
+							table.rows.add(spbbook).draw();
+						}
+					});
+
+					$("#advsalary").click(function () {
+						if (advbook != null) {
+							table.clear().draw();
+							table.column(2).visible(false);
+							table.rows.add(advbook).draw();
+						}
+					});
+					search(table);
+				});
+				changetitle(usr);
+				back();
+			});
+		});
+	
 	}
 
 	$(document).ready(function () {

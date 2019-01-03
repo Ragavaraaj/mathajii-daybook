@@ -17,13 +17,12 @@
 		  });
 		}
 	</script>
-	<link rel="manifest" href="/mathajidaybook/admin/manifest.json">
-	<link rel="stylesheet" href="/mathajidaybook/admin/css/bootstrap.min.css">
-	<script src="/mathajidaybook/admin/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="/mathajidaybook/admin/js/bootstrap.min.js"></script>
-	<script src="/mathajidaybook/admin/js/jquery.min.js"></script>
-	<script src="/mathajidaybook/admin/js/admin.js"></script>
-	<script src="/mathajidaybook/admin/css/main.css"></script>
+	<link rel="manifest" href="/admin/manifest.json">
+	<link rel="stylesheet" href="/admin/css/bootstrap.min.css">
+	<script src="/admin/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/admin/js/bootstrap.min.js"></script>
+	<script src="/admin/js/jquery.min.js"></script>
+	<script src="/admin/js/admin.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.css" />
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.js"></script>
 

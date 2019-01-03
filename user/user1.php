@@ -19,13 +19,12 @@
 		  });
 		}
 	</script>
-	<link rel="manifest" href="/mathajidaybook/user/manifest.json">
-	<link rel="stylesheet" href="/mathajidaybook/user/css/bootstrap.min.css">
-	<script src="/mathajidaybook/user/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="/mathajidaybook/user/js/bootstrap.min.js"></script>
-	<script src="/mathajidaybook/user/js/jquery.min.js"></script>
-	<script src="/mathajidaybook/user/js/main.js"></script>
-	<script src="/mathajidaybook/user/css/main.css"></script>
+	<link rel="manifest" href="/user/manifest.json">
+	<link rel="stylesheet" href="/user/css/bootstrap.min.css">
+	<script src="/user/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/user/js/bootstrap.min.js"></script>
+	<script src="/user/js/jquery.min.js"></script>
+	<script src="/user/js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/fc-3.2.5/fh-3.1.4/datatables.min.css"/>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/fc-3.2.5/fh-3.1.4/datatables.min.js"></script>
 

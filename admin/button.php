@@ -5,4 +5,5 @@
 	<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="User3" id ="user3"/>
 	<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="User4" id ="user4"/>
 	<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="User5" id ="user5"/>
+	<input type="button" class="btn btn-outline-primary btn-lg btn-block" value="User6" id ="user6"/>
 </div>
