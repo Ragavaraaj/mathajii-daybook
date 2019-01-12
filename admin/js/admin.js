@@ -8,7 +8,7 @@
 			scrollCollapse: true,
 			fixedColumns: {
 				leftColumns: 1,
-				rightColumns: 3
+				rightColumns: 4
 			},
 			"paging": false,
 			"ordering": false,
