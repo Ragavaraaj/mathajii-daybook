@@ -2,8 +2,10 @@
  
 include_once ('connection.php');
 date_default_timezone_set('IST');
-$curTime = strtotime("-30 minutes", strtotime(date("Y-n-d h:i:s")));
-$Time = date("Y-n-d h:i:s", $curTime);
+$date = new DateTime();
+$date->setTimeZone(new DateTimeZone("UTC"));
+$date->add(new DateInterval('P0DT5H30M'));
+$IST = $date->format('Y-m-d H:i:s');
 
 function change($con,$inProject,$inAmt,$noAdj)
 {
@@ -48,13 +50,13 @@ try
 			case "deb":
 				if($inAdj == "no")
 				{
-					$stmt->execute(array($Time,$inPar,null,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$stmt->execute(array($IST,$inPar,null,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
 					$database->closeConnection();
 					echo "success";
 				}
 				else
 				{
-					$stmt->execute(array($Time,$inPar,null,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$stmt->execute(array($IST,$inPar,null,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
 					$database->closeConnection();
 					echo "success";
 				}
@@ -63,56 +65,56 @@ try
 			case "cre":
 				if($inAdj == "no")
 				{
-					$stmt->execute(array($Time,$inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$stmt->execute(array($IST,$inPar,$inProject,0,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
 					change($con,$inProject,$inAmt,1);
 					$database->closeConnection();
 				}
 				else
 				{
-					$stmt->execute(array($Time,$inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+					$stmt->execute(array($IST,$inPar,$inProject,$inAmt,0,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
 					change($con,$inProject,$inAmt,0);
 					$database->closeConnection();
 				}
 			break;
 
 			case "info":
-				$stmt->execute(array($Time,$inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
+				$stmt->execute(array($IST,$inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],0));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "salb":
-				$stmt->execute(array($Time,$inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],1));
+				$stmt->execute(array($IST,$inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],1));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "salw":
-				$stmt->execute(array($Time,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],2));
+				$stmt->execute(array($IST,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),($preRes['salbalance']+$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],2));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "ssalb":
-				$stmt->execute(array($Time,$inPar,null,0,$inAmt,$preRes['balance'],$preRes['salbalance'],($preRes['specialbonus']-$inAmt),$preRes['saladvanace'],3));
+				$stmt->execute(array($IST,$inPar,null,0,$inAmt,$preRes['balance'],$preRes['salbalance'],($preRes['specialbonus']-$inAmt),$preRes['saladvanace'],3));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "ssalw":
-				$stmt->execute(array($Time,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],($preRes['specialbonus']+$inAmt),$preRes['saladvanace'],4));
+				$stmt->execute(array($IST,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],($preRes['specialbonus']+$inAmt),$preRes['saladvanace'],4));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "asalb":
-				$stmt->execute(array($Time,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']+$inAmt),6));
+				$stmt->execute(array($IST,$inPar,null,$inAmt,$inAmt,($preRes['balance']-$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']+$inAmt),6));
 				$database->closeConnection();
 				echo "success";
 			break;
 
 			case "asalw":
-				$stmt->execute(array($Time,$inPar,null,$inAmt,$inAmt,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']-$inAmt),8));
+				$stmt->execute(array($IST,$inPar,null,$inAmt,$inAmt,($preRes['balance']+$inAmt),$preRes['salbalance'],$preRes['specialbonus'],($preRes['saladvanace']-$inAmt),8));
 					$database->closeConnection();
 					echo "success";
 			break;
