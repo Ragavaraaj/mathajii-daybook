@@ -39,7 +39,7 @@ try
 		if($preRes == null )
 		{	
 			$start = $con->prepare($querry);
-			$start->execute(array("start",0,0,0,0,0,0,0,-1));
+			$start->execute(array($IST,"start",0,0,0,0,0,0,0,-1));
 			$prestmt = $con->query("select * from " . $inUser . " order by id desc limit 1");
 			$preRes = $prestmt->fetch();
 		}
