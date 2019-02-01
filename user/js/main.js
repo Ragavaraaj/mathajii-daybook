@@ -56,7 +56,7 @@ function back(){
 
 function radioRequired(num,aorp)
 {
-	for (i =0 ; i< num ; i++){
+	for (i =1 ; i<= num ; i++){
 		$("#" + aorp + num).prop('required',true);
 	}
 }
@@ -64,10 +64,38 @@ function radioRequired(num,aorp)
 function changeAfterSal(value)
 {
 	return 	$('#change').load('input_form.php', function() {
-		$("#user").val(usr);
-		$("#flag").val(value);
 		$("#divselect").css("display", "none");
 		$("#divadj").css("display", "none");
+		$("#divworkorno").css("display", "none");
+		$("#user").val(usr);
+		$("#flag").val(value);
+		start(1);
+		$("#backtomain").click(function(){
+			back();
+		});
+	});
+
+}
+
+function changeAfterSalb(value)
+{
+	return 	$('#change').load('input_form.php', function() {
+		$("#divselect").css("display", "none");
+		$("#divadj").css("display", "none");
+		$("#user").val(usr);
+		$("#flag").val(value);
+		$("#W2").click(function (e) { 
+			$("#divamt").css("display", "none");
+			$("#amount").removeAttr("required");
+			$("#amount").val(0);
+		});
+		
+		$("#W1").click(function (e) { 
+			$("#divamt").css("display", "block");
+			$("#amount").attr("required", "required");
+			$("#amount").val("");			
+		});
+
 		start(1);
 		$("#backtomain").click(function(){
 			back();
@@ -96,6 +124,7 @@ function loadpage()
 			$("#divselect").css("display", "none");
 			$("#divadj").css("display", "none");
 			$("#amount").removeAttr("required");
+			$("#divworkorno").css("display", "none");
 			$("#user").val(usr);
 			$("#flag").val("info");
 			start(3);
@@ -107,9 +136,10 @@ function loadpage()
 	
 	$("#deb").click(function(){
 		$('#change').load('input_form.php', function() {
+			$("#divselect").css("display", "none");
+			$("#divworkorno").css("display", "none");
 			$("#user").val(usr);
 			$("#flag").val("deb");
-			$("#divselect").css("display", "none");
 			start(1);
 			$("#backtomain").click(function(){
 				back();
@@ -119,6 +149,7 @@ function loadpage()
 	
 	$("#cre").click(function(){
 		$('#change').load('input_form.php', function() {
+			$("#divworkorno").css("display", "none");
 			$("#user").val(usr);
 			$("#flag").val("cre");
 			radioRequired(3,'P');
@@ -133,7 +164,7 @@ function loadpage()
 		$('#change').load('salbuttons.php', function() {
 
 			$("#salb").click(function(){
-				changeAfterSal("salb")
+				changeAfterSalb("salb")
 			});
 			
 			$("#salw").click(function(){
@@ -141,7 +172,7 @@ function loadpage()
 			});
 
 			$("#ssalb").click(function(){
-				changeAfterSal("ssalb")
+				changeAfterSalb("ssalb")
 			});
 			
 			$("#ssalw").click(function(){
@@ -149,7 +180,7 @@ function loadpage()
 			});
 
 			$("#asalb").click(function(){
-				changeAfterSal("asalb")
+				changeAfterSalb("asalb")
 			});
 
 			$("#asalw").click(function(){

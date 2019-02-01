@@ -11,6 +11,17 @@
 		  <label class="custom-control-label" for="A2">Adjustment</label>
 		</div>
 	</div>
+	<div class="form-group" id="divworkorno">
+		<label class="lead" for="adjustment">Pressence of job</label>
+		<div class="custom-control custom-radio custom-control-inline">
+		  <input type="radio" id="W1" name="adjustment" class="custom-control-input" value="yes" checked>
+		  <label class="custom-control-label" for="W1">Work</label>
+		</div>
+		<div class="custom-control custom-radio custom-control-inline">
+		  <input type="radio" id="W2" name="adjustment" class="custom-control-input" value="no">
+		  <label class="custom-control-label" for="W2">No Work</label>
+		</div>
+	</div>
 	<div class="form-group" id="divpar">
 		<label class="lead" for="Par">Particulars</label>
 		<input type="text" class="form-control" id="Par" name = "Par" maxlength="25" required="required">

@@ -12,7 +12,7 @@ try
 		$database = new Connection();
 		$con = $database->openConnection();
 	
-		$stmt = $con->query("select date, info, project, debit, credit, balance, view from " . $inUser .  " where view % 2 = 0 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, balance, view from " . $inUser .  " where view % 2 = 0 order by id desc");
 		while($row = $stmt->fetch()){
 			$date = date_create($row["date"]);
 			$row["date"] = date_format($date,"d-M-y");
@@ -33,7 +33,7 @@ try
 
 		$resultData["daybook"] = $data1;
 	
-		$stmt = $con->query("select date, info, project, debit, credit, salbalance, view from " . $inUser .  " where view between 1 and 2 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, salbalance, view from " . $inUser .  " where view between 1 and 2 order by id desc");
 		while($row = $stmt->fetch())
 		{
 			$date = date_create($row["date"]);
@@ -47,7 +47,7 @@ try
 
 		$resultData["salbook"] = $data2;
 
-		$stmt = $con->query("select date, info, project, debit, credit, specialbonus, view from " . $inUser .  " where view between 3 and 4 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, specialbonus, view from " . $inUser .  " where view between 3 and 4 order by id desc");
 		while($row = $stmt->fetch())
 		{
 			$date = date_create($row["date"]);
@@ -61,7 +61,7 @@ try
 
 		$resultData["spbbook"] = $data3;
 
-		$stmt = $con->query("select date, info, project, debit, credit, saladvanace, view from " . $inUser .  " where view between 6 and 8 order by id");
+		$stmt = $con->query("select date, info, project, debit, credit, saladvanace, view from " . $inUser .  " where view between 6 and 8 order by id desc");
 		while($row = $stmt->fetch())
 		{
 			$date = date_create($row["date"]);
