@@ -14,11 +14,11 @@
 	<div class="form-group" id="divworkorno">
 		<label class="lead" for="adjustment">Pressence of job</label>
 		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="W1" name="adjustment" class="custom-control-input" value="yes" checked>
+		  <input type="radio" id="W1" name="work" class="custom-control-input" value="yes" checked>
 		  <label class="custom-control-label" for="W1">Work</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="W2" name="adjustment" class="custom-control-input" value="no">
+		  <input type="radio" id="W2" name="work" class="custom-control-input" value="no">
 		  <label class="custom-control-label" for="W2">No Work</label>
 		</div>
 	</div>
