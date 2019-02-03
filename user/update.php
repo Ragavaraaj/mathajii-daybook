@@ -27,6 +27,7 @@ try
 	{ 
 		$inPar = $_POST["Par"]; 
 		$inAmt = $_POST["amount"];
+		$inWork = $_POST["work"];
 		$inFlag = $_POST["flag"];
 		$inUser = $_POST["user"];
 		$inAdj = $_POST["adjustment"];
@@ -84,9 +85,19 @@ try
 			break;
 
 			case "salb":
-				$stmt->execute(array($IST,$inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],1));
-				$database->closeConnection();
-				echo "success";
+				if($inWork == "yes")
+				{
+					$stmt->execute(array($IST,$inPar,null,0,$inAmt,$preRes['balance'],($preRes['salbalance']-$inAmt),$preRes['specialbonus'],$preRes['saladvanace'],1));
+					$database->closeConnection();
+					echo "success";
+				}
+				else
+				{
+					$stmt->execute(array($IST,$inPar,null,0,0,$preRes['balance'],$preRes['salbalance'],$preRes['specialbonus'],$preRes['saladvanace'],1));
+					$database->closeConnection();
+					echo "success";
+				}
+
 			break;
 
 			case "salw":

@@ -87,12 +87,12 @@ function changeAfterSalb(value)
 		$("#W2").click(function (e) { 
 			$("#divamt").css("display", "none");
 			$("#amount").removeAttr("required");
-			$("#amount").val(0);
+			$("#amount").val(1);
 		});
 		
 		$("#W1").click(function (e) { 
-			$("#divamt").css("display", "block");
 			$("#amount").attr("required", "required");
+			$("#divamt").css("display", "block");
 			$("#amount").val("");			
 		});
 
@@ -172,7 +172,7 @@ function loadpage()
 			});
 
 			$("#ssalb").click(function(){
-				changeAfterSalb("ssalb")
+				changeAfterSal("ssalb")
 			});
 			
 			$("#ssalw").click(function(){
@@ -180,7 +180,7 @@ function loadpage()
 			});
 
 			$("#asalb").click(function(){
-				changeAfterSalb("asalb")
+				changeAfterSal("asalb")
 			});
 
 			$("#asalw").click(function(){
