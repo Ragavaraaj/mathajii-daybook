@@ -2,51 +2,82 @@
  
 include_once ('connection.php');
  
+$resultData [] = null;
+
 try 
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 	{ 
 		$inUser = $_POST["user"];
-		$inType = $_POST["type"];
-		$inReqProject = $_POST["project"];
 		$database = new Connection();
 		$con = $database->openConnection();
-		if($inType == "daybook")
-		{	
-			$stmt = $con->query("select date, info, debit, credit, balance, view from " . $inUser .  " where view < 2 order by id");
-			while($row = $stmt->fetch()){
-				$date = date_create($row["date"]);
-				$row["date"] = date_format($date,"d-M-y");
-				if($row["view"] == 1)
+	
+		$stmt = $con->query("select date, info, project, debit, credit, balance, view from " . $inUser .  " where view % 2 = 0 order by id desc");
+		while($row = $stmt->fetch()){
+			$date = date_create($row["date"]);
+			$row["date"] = date_format($date,"d-M-y");
+			switch($row["view"])
+			{
+				case 2:
+				case 4:
+				case 6:
 					$row["debit"] = number_format(0,2);
-				$data[] = $row;
-			}
-		}
-		else if ($inType == "sal")
-		{
-			$stmt = $con->query("select date, info, debit, credit, salbalance, view from " . $inUser .  " where view between 1 and 2 order by id");
-			while($row = $stmt->fetch()){
-				$date = date_create($row["date"]);
-				$row["date"] = date_format($date,"d-M-y");
-				$row["balance"] = $row["salbalance"];
-				unset($row["salbalance"]);
-				if($row["view"] == 1)
+				break;
+
+				case 8:
 					$row["credit"] = number_format(0,2);
-				$data[] = $row;
+				break;
 			}
+			$data1[] = $row;
 		}
-		else if ($inReqProject == "true")
+
+		$resultData["daybook"] = $data1;
+	
+		$stmt = $con->query("select date, info, project, debit, credit, salbalance, view from " . $inUser .  " where view between 1 and 2 order by id desc");
+		while($row = $stmt->fetch())
 		{
-			$stmt = $con->query("select * from project");
-			while($row = $stmt->fetch())
-				$data[] = $row;
+			$date = date_create($row["date"]);
+			$row["date"] = date_format($date,"d-M-y");
+			$row["balance"] = $row["salbalance"];
+			unset($row["salbalance"]);
+			if($row["view"] == 2)
+				$row["credit"] = number_format(0,2);
+			$data2[] = $row;
 		}
-		else
-		{			
-			echo "error";
-			$database->closeConnection();
+
+		$resultData["salbook"] = $data2;
+
+		$stmt = $con->query("select date, info, project, debit, credit, specialbonus, view from " . $inUser .  " where view between 3 and 4 order by id desc");
+		while($row = $stmt->fetch())
+		{
+			$date = date_create($row["date"]);
+			$row["date"] = date_format($date,"d-M-y");
+			$row["balance"] = $row["specialbonus"];
+			unset($row["specialbonus"]);
+			if($row["view"] == 4)
+				$row["credit"] = number_format(0,2);
+			$data3[] = $row;
 		}
-		echo json_encode($data);
+
+		$resultData["spbbook"] = $data3;
+
+		$stmt = $con->query("select date, info, project, debit, credit, saladvanace, view from " . $inUser .  " where view between 6 and 8 order by id desc");
+		while($row = $stmt->fetch())
+		{
+			$date = date_create($row["date"]);
+			$row["date"] = date_format($date,"d-M-y");
+			$row["balance"] = $row["saladvanace"];
+			unset($row["saladvanace"]);
+			if($row["view"] == 6)
+				$row["credit"] = number_format(0,2);
+			else
+				$row["debit"] = number_format(0,2);
+			$data4[] = $row;
+		}
+
+		$resultData["advbook"] = $data4;
+
+		echo json_encode($resultData);
 		$database->closeConnection();
 	}
 }
